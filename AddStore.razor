@@ -1,0 +1,46 @@
+﻿
+@page "/addstore"
+@page "/addstore/{StoreId}"
+@inherits AddStoreBase
+
+<h3>Add new store</h3>
+
+<section class="store-edit">
+    @if (!Saved)
+    {
+        <div class="alert @StatusClass">@Message</div>
+
+        <EditForm Model="@Store" OnValidSubmit="@HandleValidSubmit">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group row">
+                <label for="businessname" class="col-sm-3">Business name: </label>
+                <InputText id="businessname" @bind-Value="@Store.BusinessName" class="form-control col-sm-8" placeholder="Enter business name"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Store.BusinessName)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="vendorid" class="col-sm-3">Vendor Id: </label>
+                <InputText id="vendorid" class="form-control col-sm-8" @bind-Value="@Store.VendorId" placeholder="Enter vendor id"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Store.VendorId)" />
+            </div>
+            <div class="form-group row">
+                <label for="routingnumber" class="col-sm-3">Bank Routing: </label>
+                <InputText id="routingnumber" class="form-control col-sm-8" @bind-Value="@Store.RoutingNumber" placeholder="Enter Bank routing number"></InputText>
+            </div>
+            <div class="form-group row">
+                <label for="bankaccount" class="col-sm-3">Bank Account: </label>
+                <InputText id="bankaccount" class="form-control col-sm-8" @bind-Value="@Store.BankAccount" placeholder="Enter Bank account number"></InputText>
+            </div>
+            <button type="submit" class="btn btn-primary edit-btn">
+                Save member
+            </button>
+        </EditForm>
+    }
+    else
+    {
+    <div class="alert @StatusClass">@Message</div>
+    }
+        
+</section>
